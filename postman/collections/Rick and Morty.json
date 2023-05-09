@@ -1,0 +1,452 @@
+{
+	"info": {
+		"_postman_id": "5eff9605-ffc4-469f-938f-ae28ffb43058",
+		"name": "Rick and Morty",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "19868473-5eff9605-ffc4-469f-938f-ae28ffb43058"
+	},
+	"item": [
+		{
+			"name": "All location",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "05de1371-fbaa-4530-b26f-7a415ca3f0a1",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"    for (var i = 0; i < jsonData.results.length; i++){\r",
+							"        if (jsonData.results[i].name === \"Citadel of Ricks\"){\r",
+							"             pm.environment.set(\"IdLocation\", jsonData.results[i].id);\r",
+							"            break;\r",
+							"        }\r",
+							"    }\r",
+							"    \r",
+							"\r",
+							"    \r",
+							"\r",
+							"  "
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d165e51e-a203-4d91-9c2c-7c2d7e3ac66d",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "7ea71797-4479-4d9c-8f2c-2a8dbcb73e16",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://rickandmortyapi.com/api/location",
+					"protocol": "https",
+					"host": [
+						"rickandmortyapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"location"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "One location",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2e01d98d-86bf-4fde-a1e1-7b486fd14c65",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "c7fadf63-fdc2-4273-a0e2-bf2f3b9adb07",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://rickandmortyapi.com/api/location/{{IdLocation}}",
+					"protocol": "https",
+					"host": [
+						"rickandmortyapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"location",
+						"{{IdLocation}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filtr",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "64d7e0bf-b711-4c63-ba65-c3e144985612",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "b5943c3b-7622-4255-9988-c609e19db3dd",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://rickandmortyapi.com/api/location?type=Planet",
+					"protocol": "https",
+					"host": [
+						"rickandmortyapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"location"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "Planet",
+							"type": "text"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All characters",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f1acd22b-1851-464c-be37-6da885475de9",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"var planet_name = \"Citadel of Ricks\";\r",
+							"var all = jsonData.results;\r",
+							"\r",
+							"console.log(\"Postacie w \" + planet_name);\r",
+							"\r",
+							"for (var i = 0; i < all.length; i++){\r",
+							"    if (all[i].location.name === planet_name ){\r",
+							"\r",
+							"        console.log(all[i].name);\r",
+							"    }\r",
+							"}\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "d4eef408-3ca3-49b0-bb93-60097dd8a20b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://rickandmortyapi.com/api/character",
+					"protocol": "https",
+					"host": [
+						"rickandmortyapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"character"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Two episodes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aaa377ed-be9c-4528-9f27-d99f536c5a64",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "e477340a-95c9-4581-9794-3c3a52be86b7",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://rickandmortyapi.com/api/episode/11,5",
+					"protocol": "https",
+					"host": [
+						"rickandmortyapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"episode",
+						"11,5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test planet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "738032de-7c2c-4fe8-b342-3b77127582be",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Test czy charakter 2 i 3 znajdują się na planecie Ziemia\", function(){\r",
+							"\r",
+							"    for ( var i = 0; i < jsonData.length; i++){\r",
+							"\r",
+							"        if (jsonData[i].id === 3 || jsonData[i].id === 2) {\r",
+							"        pm.expect(jsonData[i].location.name).includes(\"Earth\")\r",
+							"        }   \r",
+							"        \r",
+							"    }\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "c9e18188-8edc-4a1e-b9a4-83055c49a53a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://rickandmortyapi.com/api/character/3,2",
+					"protocol": "https",
+					"host": [
+						"rickandmortyapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"character",
+						"3,2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test planet 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6c1ea8a5-5831-4a68-8d71-d42692ce9031",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"var Character_3 = false;\r",
+							"var Character_2 = false;\r",
+							"\r",
+							"\r",
+							"pm.test (\"Test czy na planecie znajduje się charakter 2 i 3\", function (){\r",
+							"\r",
+							"    for (var i = 0; i < jsonData.results.length; i++){\r",
+							"\r",
+							"            jsonData.results[i].residents.forEach(function(item) {\r",
+							"   \r",
+							"            if (item === \"https://rickandmortyapi.com/api/character/3\"){\r",
+							"            Character_3 = true;\r",
+							"            }\r",
+							"            if (item === \"https://rickandmortyapi.com/api/character/2\"){\r",
+							"            Character_2 = true;\r",
+							"            }\r",
+							"\r",
+							"        });\r",
+							"    }\r",
+							"pm.expect(Character_3 ).to.be.true;\r",
+							"pm.expect(Character_2).to.be.true;\r",
+							"\r",
+							"\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "1f1f0b99-5c98-440f-b62f-f2ba71e2c67b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://rickandmortyapi.com/api/location?name=Earth",
+					"protocol": "https",
+					"host": [
+						"rickandmortyapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"location"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "planet",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "Earth"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Episodes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "820e98b2-858b-46cf-a22c-f8e209955da8",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test (\"Sprawdzenie, które odcinki mają nazwe dłuższą niż 10 znaków\", function(){\r",
+							"\r",
+							"    for ( var i = 0; i < jsonData.results.length; i++){\r",
+							"        if (jsonData.results[i].name.length > 10 ){\r",
+							"    \r",
+							"            console.log(jsonData.results[i].name);\r",
+							"            \r",
+							"        }\r",
+							"\r",
+							"    }\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "a29f51d6-ba79-4e10-beb0-feca8cf92dc3",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://rickandmortyapi.com/api/episode",
+					"protocol": "https",
+					"host": [
+						"rickandmortyapi",
+						"com"
+					],
+					"path": [
+						"api",
+						"episode"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "9d4fe18d-cda5-44ba-8a83-00d1118d81ab",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "20a498f6-abe3-44bf-adc0-cef3a777c9d1",
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});"
+				]
+			}
+		}
+	]
+}
