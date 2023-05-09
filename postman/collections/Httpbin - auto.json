@@ -1,0 +1,273 @@
+{
+	"info": {
+		"_postman_id": "abd3934a-ce9e-4041-a8af-7f981abfb7fe",
+		"name": "Httpbin - auto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "19868473-abd3934a-ce9e-4041-a8af-7f981abfb7fe"
+	},
+	"item": [
+		{
+			"name": "GET with URL Parms",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a9bec95d-6b43-4b39-b483-a9bbe1cacefb",
+						"exec": [
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "4941536d-e45c-4cf0-aac4-56fd94845601",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://httpbin.org/get?isGood=true&isBad=false",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"get"
+					],
+					"query": [
+						{
+							"key": "isGood",
+							"value": "true"
+						},
+						{
+							"key": "isBad",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get user id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2b2c31d2-b203-4da0-acc6-5e881a65b91e",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Should verify response - uuid\", function (){\r",
+							"    const resData = pm.response.json();\r",
+							"    console.log(resData.uuid); //wyświetlenie \r",
+							"    pm.expect(resData.uuid.length).to.be.greaterThan(0); //weryfikuje czy wartość jest większa niż 0\r",
+							"\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "9a424df8-c039-4d84-a4ee-5ec015911187",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://httpbin.org/uuid",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"uuid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set current date",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "df8c1793-8b31-43cb-8f59-f85fda1a2070",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"var Cdate = pm.globals.get(\"CurrentDate\");\r",
+							"\r",
+							"pm.test(\"Current date is \" + Cdate, function () {\r",
+							"\r",
+							"    pm.expect(jsonData.json.currentDate).to.eql(Cdate);\r",
+							"});\r",
+							"\r",
+							"var isTrue = false;\r",
+							"pm.test(\"Item is exist\", function () {\r",
+							"\r",
+							"    jsonData.json.permissions.forEach(function(item){\r",
+							"    if( item === \"2000\"){\r",
+							"    isTrue = true;\r",
+							"    pm.expect(item).to.eql(isTrue);\r",
+							"    }\r",
+							"    });\r",
+							"    \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "34de2bdb-9745-454c-add2-c21eb2157d4f",
+						"exec": [
+							"let date = Date.now();\r",
+							"\r",
+							"pm.globals.set(\"CurrentDate\", date);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "7887005a-8e2d-4d7a-b61f-1b8a85c49ded",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"john\",\r\n    \"permissions\":[2000,3000,4000],\r\n    \"currentDate\":{{CurrentDate}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://httpbin.org/post",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set current date Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a99621f8-0146-41ab-879a-e14a0230471e",
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"var Cdate = pm.globals.get(\"CurrentDate\");\r",
+							"\r",
+							"pm.test(\"Current date is \" + Cdate, function () {\r",
+							"\r",
+							"    pm.expect(jsonData.json.currentDate).to.eql(Cdate);\r",
+							"});\r",
+							"\r",
+							"var isTrue = false;\r",
+							"pm.test(\"Item is exist\", function () {\r",
+							"\r",
+							"    jsonData.json.permissions.forEach(function(item){\r",
+							"    if( item === \"2000\"){\r",
+							"    isTrue = true;\r",
+							"    pm.expect(item).to.eql(isTrue);\r",
+							"    }\r",
+							"    });\r",
+							"    \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "53fe5e34-9188-4b8a-82b1-1ff1bbf0b9dd",
+						"exec": [
+							"let date = Date.now();\r",
+							"\r",
+							"pm.globals.set(\"CurrentDate\", date);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "33af94b9-8e68-4ef2-84b6-2e6066d1179a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"john\",\r\n    \"permissions\":[2000,3000,4000],\r\n    \"currentDate\":{{CurrentDate}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://httpbin.org/post",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "5f1bd547-49aa-4f98-9d90-0a2941b372fa",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "dc44ac73-e7ac-48e8-bed4-d5c7acfb8b6b",
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});"
+				]
+			}
+		}
+	]
+}
