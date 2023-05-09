@@ -1,0 +1,480 @@
+{
+	"info": {
+		"_postman_id": "34a0adbc-0569-4858-bff4-1c7dcd4faeb9",
+		"name": "Trello_2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "19868473-34a0adbc-0569-4858-bff4-1c7dcd4faeb9"
+	},
+	"item": [
+		{
+			"name": "Create table",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1dc102bc-b160-4d21-8c16-c16f70e6e0f4",
+						"exec": [
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"pm.globals.set(\"name\", jsonData.name);\r",
+							"name = pm.globals.get(\"name\")\r",
+							"   \r",
+							"pm.test(\"Name should be \" + name, function (){\r",
+							"    pm.expect(jsonData.name).to.eql(name);    \r",
+							"})\r",
+							"\r",
+							"pm.globals.set(\"idBoard\", jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e2888d51-26dc-49f6-ae1f-35e7bf9b99ac",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "fc5b2c76-7490-4d9c-a7d6-75e57338ab09",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "ATTAf6308bde451527cb71e9f51599b06b10ed5986fe21f7d0da063f44b51c400f6e6D264D05",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n    \"name\": \"{{$randomStreetName}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.trello.com/1/boards/?key=c73b766a5e50931bf48f1082a1564732&token=ATTAf6308bde451527cb71e9f51599b06b10ed5986fe21f7d0da063f44b51c400f6e6D264D05",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"boards",
+						""
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "c73b766a5e50931bf48f1082a1564732"
+						},
+						{
+							"key": "token",
+							"value": "ATTAf6308bde451527cb71e9f51599b06b10ed5986fe21f7d0da063f44b51c400f6e6D264D05"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change name",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1c42603d-38ca-4dd4-9c03-7dba68bbbb51",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "0613cb68-cd32-443d-91aa-50df6ab05572",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"name\":\"Mati\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.trello.com/1/boards/{{idBoard}}/?key=c73b766a5e50931bf48f1082a1564732&token=ATTAf6308bde451527cb71e9f51599b06b10ed5986fe21f7d0da063f44b51c400f6e6D264D05",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"boards",
+						"{{idBoard}}",
+						""
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "c73b766a5e50931bf48f1082a1564732"
+						},
+						{
+							"key": "token",
+							"value": "ATTAf6308bde451527cb71e9f51599b06b10ed5986fe21f7d0da063f44b51c400f6e6D264D05"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All lists",
+			"id": "908764b5-8c70-40ed-9d39-3a961dcea9a7",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.trello.com/1/boards/{{idBoard}}/lists/?key=c73b766a5e50931bf48f1082a1564732&token=ATTAf6308bde451527cb71e9f51599b06b10ed5986fe21f7d0da063f44b51c400f6e6D264D05",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"boards",
+						"{{idBoard}}",
+						"lists",
+						""
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "key",
+							"value": "c73b766a5e50931bf48f1082a1564732"
+						},
+						{
+							"key": "token",
+							"value": "ATTAf6308bde451527cb71e9f51599b06b10ed5986fe21f7d0da063f44b51c400f6e6D264D05"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new list",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6581d968-e195-4fc3-93a2-4f7a0f1d131d",
+						"exec": [
+							"response = pm.response.json();\r",
+							"pm.globals.set(\"listName\", response.name);\r",
+							"pm.globals.set(\"listId\", response.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "bcc09a4e-3774-49d7-be52-c77af03ef7e7",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{$randomStreetName}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.trello.com/1/boards/{{idBoard}}/lists/?key=c73b766a5e50931bf48f1082a1564732&token=ATTAf6308bde451527cb71e9f51599b06b10ed5986fe21f7d0da063f44b51c400f6e6D264D05",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"boards",
+						"{{idBoard}}",
+						"lists",
+						""
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "c73b766a5e50931bf48f1082a1564732"
+						},
+						{
+							"key": "token",
+							"value": "ATTAf6308bde451527cb71e9f51599b06b10ed5986fe21f7d0da063f44b51c400f6e6D264D05"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check list",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8f0b7222-12cd-4016-8176-f06ee6c75bbc",
+						"exec": [
+							" var allLists = pm.response.json();\r",
+							" var listName = pm.globals.get(\"listName\");\r",
+							"\r",
+							" var ListExists = false;\r",
+							"\r",
+							"\r",
+							"pm.test(\"Sprawdzenie, czy dana lista znajduje się na liście wszystkich list\", function () {\r",
+							"\r",
+							"  for (var i = 0; i < allLists.length; i++) {\r",
+							"    if (allLists[i].name === listName) {\r",
+							"      ListExists = true;\r",
+							"      break;\r",
+							"    }\r",
+							"  }\r",
+							"  pm.expect(ListExists).to.be.true;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "a0ce206b-1217-4bee-b2ef-547b1502d41e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.trello.com/1/boards/{{idBoard}}/lists/?key=c73b766a5e50931bf48f1082a1564732&token=ATTAf6308bde451527cb71e9f51599b06b10ed5986fe21f7d0da063f44b51c400f6e6D264D05",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"boards",
+						"{{idBoard}}",
+						"lists",
+						""
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "c73b766a5e50931bf48f1082a1564732"
+						},
+						{
+							"key": "token",
+							"value": "ATTAf6308bde451527cb71e9f51599b06b10ed5986fe21f7d0da063f44b51c400f6e6D264D05"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Move list to a different board",
+			"id": "02466f26-9f8d-46a8-a935-087119fddca1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.trello.com/1/lists/{{listId}}/idBoard?value=64466b583c0858a23cb55cef&key=c73b766a5e50931bf48f1082a1564732&token=ATTAf6308bde451527cb71e9f51599b06b10ed5986fe21f7d0da063f44b51c400f6e6D264D05",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"lists",
+						"{{listId}}",
+						"idBoard"
+					],
+					"query": [
+						{
+							"key": "value",
+							"value": "64466b583c0858a23cb55cef"
+						},
+						{
+							"key": "key",
+							"value": "c73b766a5e50931bf48f1082a1564732"
+						},
+						{
+							"key": "token",
+							"value": "ATTAf6308bde451527cb71e9f51599b06b10ed5986fe21f7d0da063f44b51c400f6e6D264D05"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete table",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9c68d1d0-6c9a-46bb-9b7e-3bd9d742d9a0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "7c78e8dd-0c87-4eca-9a47-55fdf8b89900",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.trello.com/1/board/inKIHYcO/?key=c73b766a5e50931bf48f1082a1564732&token=ATTAf6308bde451527cb71e9f51599b06b10ed5986fe21f7d0da063f44b51c400f6e6D264D05",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"board",
+						"inKIHYcO",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "key",
+							"value": "c73b766a5e50931bf48f1082a1564732"
+						},
+						{
+							"key": "token",
+							"value": "ATTAf6308bde451527cb71e9f51599b06b10ed5986fe21f7d0da063f44b51c400f6e6D264D05"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "c721b35b-f817-406f-80a2-d797a5d4506c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "f3677472-03d8-4251-bc96-b405273f3581",
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});"
+				]
+			}
+		}
+	]
+}
